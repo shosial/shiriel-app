@@ -102,3 +102,30 @@ export const sampleQA = {
   a: "קודם לשאול על מה בדיוק היא רוצה לחשוב: המחיר, התזמון, או אם זה יעבוד אצלה. ברוב המקרים מאחורי \"לחשוב\" יש התנגדות אחת ספציפית. אחרי שהיא אומרת אותה, עונים עליה ישירות, ומציעים צעד קטן וברור להמשך (למשל שיחה קצרה ביום שנקבע עכשיו).",
   source: "מתוך: שיחת מכירה שסוגרת, שיעור 5",
 };
+
+// A content item in full: what the edit screen shows. Cover is a picture she uploads from the phone;
+// in the demo it is drawn as a dark block. Only items at "final approval" or "live" show in the feed.
+export type ContentItem = {
+  id: string; title: string; kind: string; stage: ContentStage; date?: string; tone: string;
+  platform?: string; caption?: string; videoUrl?: string; rawUrl?: string;
+  clientAnswer?: "approved" | "fix"; fixNote?: string;
+};
+
+export const contentDetails: Record<string, Partial<ContentItem>> = {
+  p4: { platform: "אינסטגרם", caption: "יום צילומים אצל לקוחה ✨ ככה נראה מאחורי הקלעים של סרטון אחד שמביא לקוחות. שמרי את זה לפעם הבאה שתצלמי.", videoUrl: "drive.google.com/file/…/final", rawUrl: "drive.google.com/drive/folders/…" },
+  p1: { platform: "אינסטגרם", caption: "3 טעויות שאני רואה כמעט בכל עמוד עסקי. איזו מהן את עושה? כתבי לי בתגובות 👇", videoUrl: "instagram.com/reel/…" },
+};
+
+// One client's folder (demo). Same board, gantt and feed as "התוכן שלי", plus links for the client.
+export const client = {
+  id: "l4", name: "יואב פרץ", business: "חנות אופניים",
+  approvalLink: "app.shiriel/a/7KQ2M", reportLink: "app.shiriel/r/R9X4P",
+};
+export const clientContent: ContentItem[] = [
+  { id: "q1", title: "רכיבת בוקר בכרמל", kind: "ריל", stage: "live", date: "10.11", tone: "#1c1c1e", platform: "אינסטגרם", clientAnswer: "approved" },
+  { id: "q2", title: "איך בוחרים אופניים לילדים", kind: "קרוסלה", stage: "live", date: "13.11", tone: "#3a3a3c", platform: "אינסטגרם", clientAnswer: "approved" },
+  { id: "q3", title: "מבצע סוף עונה", kind: "פוסט", stage: "approved", date: "18.11", tone: "#48484a", platform: "פייסבוק", caption: "סוף עונה בחנות 🚲 20% על כל אופני העיר עד סוף החודש. מחכים לכם ברחוב הנביאים.", videoUrl: "drive.google.com/file/…/sale", clientAnswer: "approved" },
+  { id: "q4", title: "טיפול שנתי לאופניים ב-60 שניות", kind: "ריל", stage: "approved", date: "20.11", tone: "#636366", platform: "אינסטגרם", caption: "כמה זמן לא עשיתם טיפול לאופניים? 60 שניות של בדיקה שחוסכות תקלה בדרך.", videoUrl: "drive.google.com/file/…/service", clientAnswer: "fix", fixNote: "להוריד את המחיר מהסוף, הוא השתנה" },
+  { id: "q5", title: "הכירו את הצוות", kind: "ריל", stage: "edited", date: "24.11", tone: "#8e8e93", platform: "אינסטגרם" },
+  { id: "q6", title: "שאלות ותשובות על אופניים חשמליים", kind: "סטורי", stage: "script", tone: "#aeaeb2" },
+];

@@ -9,10 +9,10 @@ export const soonTitles: Record<string, string> = {
   clients: "ניהול לקוחות", campaigns: "ניתוח קמפיינים", invoices: "חשבוניות", settings: "הגדרות",
 };
 
-export function Soon({ slug }: { slug: string }) {
+export function Soon({ slug, title }: { slug: string; title?: string }) {
   const c = useColors();
   return (
-    <Screen back title={soonTitles[slug] ?? "בקרוב"}>
+    <Screen back title={title ?? soonTitles[slug] ?? "בקרוב"}>
       <View style={{ alignItems: "center", gap: 10, paddingTop: 60, paddingHorizontal: 32 }}>
         <Icon sf="hammer" md="construction" size={44} color={c.tertiaryLabel} />
         <Text style={[type.title3 as any, { color: c.label, textAlign: "center" }]}>בקרוב</Text>
