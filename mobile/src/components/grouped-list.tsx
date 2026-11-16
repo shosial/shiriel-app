@@ -35,7 +35,7 @@ type RowProps = {
   md?: string;
   iconBg?: any;
   tone?: Tone;
-  // handwritten: the title in the handwriting font, and an optional handwritten note under it
+  // handwritten: the title (and the value) in the handwriting font, and an optional handwritten note under it
   hand?: boolean;
   note?: string;
   href?: Href;
@@ -58,7 +58,7 @@ export function Row({ title, subtitle, value, valueColor, sf, md, iconBg, hand, 
         {subtitle ? <Text style={[type.subhead as any, { color: c.secondaryLabel, writingDirection: "rtl" }]} numberOfLines={2}>{subtitle}</Text> : null}
         {note ? <Text style={{ fontFamily: font.hand, fontSize: 15, lineHeight: 22, color: c.accent, writingDirection: "rtl" }} numberOfLines={2}>{note}</Text> : null}
       </View>
-      {value ? <Text selectable style={[type.body as any, { color: valueColor ?? c.secondaryLabel, fontVariant: ["tabular-nums"], writingDirection: "rtl" }]}>{value}</Text> : null}
+      {value ? <Text selectable style={[type.body as any, { color: valueColor ?? c.secondaryLabel, fontVariant: ["tabular-nums"], writingDirection: "rtl" }, hand && { fontFamily: font.handMedium, fontSize: 16 }]}>{value}</Text> : null}
       {accessory}
       {pressable ? <Icon sf="chevron.forward" md="chevron_left" size={14} color={c.tertiaryLabel} weight="semibold" /> : null}
     </View>

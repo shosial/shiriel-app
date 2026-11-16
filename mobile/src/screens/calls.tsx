@@ -12,9 +12,9 @@ export function Calls() {
       </Section>
       <Section header="השיחות שלי">
         {calls.map(call => (
-          <Row key={call.id} href={call.status === "done" ? `/call/${call.id}` : undefined} title={call.label}
-            subtitle={`${call.date} · ${call.duration}${call.result ? ` · ${call.result}` : ""}`}
-            value={call.status === "done" ? "מנותחת" : "ממתינה לניתוח"} valueColor={call.status === "done" ? c.green : c.orange} />
+          <Row key={call.id} href={call.status === "done" ? `/call/${call.id}` : undefined} title={call.label} hand
+            subtitle={`${call.date} · ${call.duration}`} note={call.result}
+            value={call.status === "done" ? "נותחה ✓" : "ממתינה לניתוח…"} valueColor={call.status === "done" ? c.green : c.orange} />
         ))}
       </Section>
     </Screen>

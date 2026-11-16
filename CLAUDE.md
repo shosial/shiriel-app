@@ -32,7 +32,7 @@ Users get access after paying (Morning payment page → email added to the allow
   white surfaces, one warm terracotta accent used sparingly (the next step, done marks). Type: Heebo (heavy for
   headlines) and Poppins for numbers and Latin labels (`src/theme/type.ts`, files in `mobile/assets/fonts`).
   Editorial layout, not a dashboard: the logo on the home screen, hairline rules, numbered lists, big light numerals,
-  plain line icons. Leads and clients add a soft handwriting (Playpen Sans Hebrew, OFL) for names and notes.
+  plain line icons. Leads, clients and calls add a soft handwriting (Playpen Sans Hebrew, OFL) for names, notes and statuses.
   Avoid the generic template look: no pastel tiles, emoji-like icons, pills or soft shadows.
   Home is "היום שלי": the one next step first (black block), then today's steps 01-05 and small wins.
   Users are young beginners: encouraging, no jargon.

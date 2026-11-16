@@ -33,7 +33,10 @@ export function CallDetail({ id }: { id: string }) {
   const pos = (mm * 60 + ss) / (dm * 60 + ds);
 
   return (
-    <Screen back title={call.label} subtitle={`${call.date} · ${call.duration}${call.result ? ` · ${call.result}` : ""}`}>
+    <Screen back title={call.label} subtitle={`${call.date} · ${call.duration}`}>
+      <Text style={{ fontFamily: font.handMedium, fontSize: 18, lineHeight: 26, color: c.green, paddingHorizontal: 20, writingDirection: "rtl" }}>
+        נותחה ✓{call.result ? <Text style={{ color: c.accent }}>{`  ·  ${call.result}`}</Text> : null}
+      </Text>
       <View style={{ marginHorizontal: 16, backgroundColor: c.cell, borderRadius: 12, borderCurve: "continuous", padding: 16, gap: 12 }}>
         <View style={{ flexDirection: "row", alignItems: "center", gap: 14 }}>
           <Pressable onPress={() => setPlaying(p => !p)} accessibilityRole="button" accessibilityLabel={playing ? "השהיה" : "ניגון"}
