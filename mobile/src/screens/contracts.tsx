@@ -2,7 +2,8 @@
 // the client opens (reads, writes a name, signs with a finger). Saved: signature, time, IP and a fingerprint
 // (SHA-256) of the wording. Sending opens HER WhatsApp with a ready message.
 import { useState } from "react";
-import { Pressable, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { Press } from "@/components/press";
 import { useRouter } from "expo-router";
 import { Screen } from "@/components/screen";
 import { Section, Row } from "@/components/grouped-list";
@@ -10,7 +11,7 @@ import { Field, Fields, Button, Buttons, Done, Note } from "@/components/form";
 import { Segmented } from "@/components/segmented";
 import { useColors } from "@/theme/colors";
 import { font, type } from "@/theme/type";
-import { contractClauses, contracts, contractStatusLabel, quote } from "@/data/demo";
+import { contractClauses, contracts, contractStatusLabel, contractTemplates, quote } from "@/data/demo";
 
 export function Contracts() {
   const c = useColors();
@@ -31,10 +32,65 @@ export function Contracts() {
       </Section>
       <Section header="נוסחים" footer="נוסח ששמרת עם ❤ חוזר בכל חוזה חדש. ההסכם עם ספק (צלמת, עורך) כולל צ'קליסט משימות שהספק מסמן.">
         <Row title="ניהול סושיאל חודשי" subtitle="הנוסח של שיריאל" sf="doc.text" md="description" />
+        <Row title="ניהול קמפיינים ממומנים" subtitle="דמי ניהול, תקציב פרסום, גישה כשותפה" sf="chart.bar" md="insights" />
         <Row title="הסכם עם ספק חיצוני" subtitle="צילום, עריכה" sf="person.badge.clock" md="engineering" />
         <Row title="הנוסח שלי ❤" subtitle="שמרת ב-02.11" sf="heart" md="favorite" />
       </Section>
     </Screen>
+  );
+}
+
+// The wording, clause by clause: tap a clause to edit it, add, delete, move up or down, and save the
+// result as "my wording ❤" for next time. Numbering is automatic. Fields in {braces} are filled from the details.
+// A signed contract is locked (its fingerprint must match what was signed).
+function ClauseEditor({ initial, locked, onSaved }: { initial: string[]; locked?: boolean; onSaved: (t: string) => void }) {
+  const c = useColors();
+  const [clauses, setClauses] = useState(initial);
+  const [editing, setEditing] = useState<number | null>(null);
+  const update = (i: number, t: string) => setClauses(l => l.map((x, j) => (j === i ? t : x)));
+  const move = (i: number, d: number) => setClauses(l => { const n = [...l]; const j = i + d; if (j < 0 || j >= n.length) return l; [n[i], n[j]] = [n[j], n[i]]; return n; });
+  const remove = (i: number) => { setClauses(l => l.filter((_, j) => j !== i)); setEditing(null); };
+  const add = () => { setClauses(l => [...l, ""]); setEditing(clauses.length); };
+  const Small = ({ t, onPress, color }: { t: string; onPress: () => void; color?: any }) => (
+    <Press onPress={onPress} label={t}><Text style={[type.subhead as any, { color: color ?? c.label, textDecorationLine: "underline" }]}>{t}</Text></Press>
+  );
+  return (
+    <View style={{ paddingHorizontal: 16, gap: 8 }}>
+      <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "baseline", paddingHorizontal: 4 }}>
+        <Text style={[type.headline as any, { color: c.label, fontFamily: font.black, fontSize: 19 }]}>הנוסח</Text>
+        {!locked ? <Text style={[type.footnote as any, { color: c.secondaryLabel }]}>לוחצים על סעיף כדי לערוך</Text> : null}
+      </View>
+      <View style={{ backgroundColor: c.cell, borderRadius: 14, overflow: "hidden" }}>
+        {clauses.map((t, i) => (
+          <View key={i} style={{ padding: 14, gap: 8, borderTopWidth: i ? StyleSheet.hairlineWidth : 0, borderTopColor: c.separator, backgroundColor: editing === i ? c.fill : "transparent" }}>
+            {editing === i ? (
+              <>
+                <Text style={{ fontFamily: font.num, color: c.accent }}>סעיף {i + 1}</Text>
+                <TextInput defaultValue={t} onChangeText={v => update(i, v)} multiline autoFocus accessibilityLabel={`סעיף ${i + 1}`}
+                  placeholder="כתבי את הסעיף. שדות משתנים בסוגריים, למשל {שם הלקוח}" placeholderTextColor={c.tertiaryLabel}
+                  style={[type.callout as any, { color: c.label, minHeight: 70, textAlign: "right", textAlignVertical: "top", backgroundColor: c.cell, borderRadius: 6, padding: 10 }]} />
+                <View style={{ flexDirection: "row", gap: 16, flexWrap: "wrap" }}>
+                  <Small t="סיום" onPress={() => setEditing(null)} />
+                  <Small t="למעלה" onPress={() => { move(i, -1); setEditing(Math.max(0, i - 1)); }} />
+                  <Small t="למטה" onPress={() => { move(i, 1); setEditing(Math.min(clauses.length - 1, i + 1)); }} />
+                  <Small t="מחיקת הסעיף" color={c.red} onPress={() => remove(i)} />
+                </View>
+              </>
+            ) : (
+              <Press onPress={() => !locked && setEditing(i)} label={`סעיף ${i + 1}`}>
+                <Text style={[type.callout as any, { color: c.label }]}><Text style={{ fontFamily: font.num }}>{i + 1}. </Text>{t || "(סעיף ריק)"}</Text>
+              </Press>
+            )}
+          </View>
+        ))}
+      </View>
+      {!locked ? (
+        <View style={{ flexDirection: "row", gap: 10, flexWrap: "wrap" }}>
+          <Button outline title="הוספת סעיף" sf="plus" md="add" onPress={add} />
+          <Button outline title="שמירה כנוסח שלי ❤" onPress={() => onSaved("הנוסח נשמר. הוא יחכה לך בכל חוזה חדש")} />
+        </View>
+      ) : null}
+    </View>
   );
 }
 
@@ -43,21 +99,25 @@ export function ContractEdit({ id }: { id: string }) {
   const router = useRouter();
   const k = contracts.find(x => x.id === id) ?? contracts[1];
   const [done, setDone] = useState<string>();
+  const [tpl, setTpl] = useState(k.supplier ? "supplier" : k.kind.includes("קמפיינים") ? "ads" : "social");
   return (
     <Screen back title={`חוזה: ${k.client}`} subtitle={contractStatusLabel[k.status]}>
       <Fields header="פרטים" footer="הפרטים נכנסים לנוסח במקומות שמסומנים בסוגריים.">
-        <Field label="שם העסק" value={k.client === "נועה כהן" ? "סטודיו פילאטיס" : "חנות אופניים"} />
+        <Field label="שם העסק" value={k.client === "נועה כהן" ? "סטודיו פילאטיס" : k.client === "רוני שמש" ? "מאפייה" : "חנות אופניים"} />
         <Field label="מחיר לחודש" value="3,500" ltr />
+        {tpl === "ads" ? <Field label="פלטפורמות" value="פייסבוק ואינסטגרם" /> : null}
+        {tpl === "ads" ? <Field label="תקציב פרסום לחודש" value="2,000" ltr /> : null}
         <Field label="תאריך התחלה" value="01.12.26" last />
       </Fields>
-      <View style={{ paddingHorizontal: 16, gap: 8 }}>
-        <Text style={[type.headline as any, { color: c.label, fontFamily: font.black, fontSize: 19, paddingHorizontal: 4 }]}>הנוסח</Text>
-        <View style={{ backgroundColor: c.cell, borderRadius: 14, padding: 16, gap: 10 }}>
-          {contractClauses.map((t, i) => (
-            <Text key={i} style={[type.callout as any, { color: c.label }]}><Text style={{ fontFamily: font.num }}>{i + 1}. </Text>{t}</Text>
+      {k.status !== "signed" ? (
+        <Section header="בחירת נוסח" footer="בוחרים נוסח, ואז אפשר לערוך כל סעיף.">
+          {contractTemplates.map(t => (
+            <Row key={t.id} title={t.name} onPress={() => setTpl(t.id)}
+              accessory={tpl === t.id ? <Text style={{ fontFamily: font.handMedium, fontSize: 16, color: c.accent }}>נבחר ✓</Text> : undefined} />
           ))}
-        </View>
-      </View>
+        </Section>
+      ) : null}
+      <ClauseEditor key={tpl} initial={contractTemplates.find(t => t.id === tpl)!.clauses} locked={k.status === "signed"} onSaved={setDone} />
       {k.status === "signed" ? (
         <Note>{`נחתם ב-${k.signedAt}. נשמרו החתימה, השעה, כתובת ה-IP וטביעת אצבע של הנוסח, כך שאי אפשר לשנות אותו אחרי החתימה.`}</Note>
       ) : (

@@ -12,7 +12,7 @@ export const month = {
 export const waiting = [
   { id: "w1", title: "2 לקוחות עוד לא סומנו כמשלמים החודש", sf: "creditcard", md: "payments", href: "/leads" as const, tone: "sage" as const },
   { id: "w2", title: "ניתוח חדש מחכה לך", sf: "waveform", md: "graphic_eq", href: "/call/c1" as const, tone: "lavender" as const },
-  { id: "w3", title: "פידבק חדש מהליווי על הסטורי שלך", sf: "bubble.left", md: "chat", href: "/item/p4" as const, tone: "blush" as const },
+  { id: "w3", title: "סרטון אחד מחכה לאישור סופי", sf: "checkmark.seal", md: "verified", href: "/item/p4" as const, tone: "blush" as const },
 ];
 
 // Today's steps: small and clear, one thing at a time. The first one not done is "the next step".
@@ -109,11 +109,10 @@ export type ContentItem = {
   id: string; title: string; kind: string; stage: ContentStage; date?: string; tone: string;
   platform?: string; caption?: string; videoUrl?: string; rawUrl?: string;
   clientAnswer?: "approved" | "fix"; fixNote?: string;
-  feedback?: { q: string; a: string };
 };
 
 export const contentDetails: Record<string, Partial<ContentItem>> = {
-  p4: { feedback: { q: "הפתיח מספיק חזק?", a: "הפתיח טוב, אבל תתחילי ישר מהרגע שהמצלמה נכנסת לסטודיו ולא מהחניה. 3 שניות ראשונות זה הכול." }, platform: "אינסטגרם", caption: "יום צילומים אצל לקוחה ✨ ככה נראה מאחורי הקלעים של סרטון אחד שמביא לקוחות. שמרי את זה לפעם הבאה שתצלמי.", videoUrl: "drive.google.com/file/…/final", rawUrl: "drive.google.com/drive/folders/…" },
+  p4: { platform: "אינסטגרם", caption: "יום צילומים אצל לקוחה ✨ ככה נראה מאחורי הקלעים של סרטון אחד שמביא לקוחות. שמרי את זה לפעם הבאה שתצלמי.", videoUrl: "drive.google.com/file/…/final", rawUrl: "drive.google.com/drive/folders/…" },
   p1: { platform: "אינסטגרם", caption: "3 טעויות שאני רואה כמעט בכל עמוד עסקי. איזו מהן את עושה? כתבי לי בתגובות 👇", videoUrl: "instagram.com/reel/…" },
 };
 
@@ -143,6 +142,7 @@ export type ContractStatus = "draft" | "sent" | "signed";
 export const contracts = [
   { id: "k1", client: "יואב פרץ", kind: "ניהול סושיאל חודשי", status: "signed" as ContractStatus, date: "02.11", signedAt: "02.11 · 21:14" },
   { id: "k2", client: "נועה כהן", kind: "ניהול סושיאל חודשי", status: "sent" as ContractStatus, date: "15.11" },
+  { id: "k4", client: "רוני שמש", kind: "ניהול קמפיינים ממומנים", status: "draft" as ContractStatus, date: "16.11" },
   { id: "k3", client: "דנה (צלמת)", kind: "הסכם עם ספק: צילום", status: "draft" as ContractStatus, date: "16.11", supplier: true },
 ];
 export const contractStatusLabel: Record<ContractStatus, string> = { draft: "טיוטה", sent: "נשלח, מחכה לחתימה", signed: "נחתם ✓" };
@@ -232,4 +232,24 @@ export const students = [
   { id: "s1", name: "נוי א.", clients: 2, calls: 3, lastActive: "היום", status: "פעילה" },
   { id: "s2", name: "מאיה ל.", clients: 1, calls: 7, lastActive: "אתמול", status: "פעילה" },
   { id: "s3", name: "עדי כ.", clients: 0, calls: 1, lastActive: "לפני 9 ימים", status: "לא פעילה" },
+];
+
+// Contract templates (demo wording; Shiriel will supply her own). {braces} are filled from the details.
+export const contractTemplates = [
+  { id: "social", name: "ניהול סושיאל חודשי", clauses: contractClauses },
+  { id: "ads", name: "ניהול קמפיינים ממומנים", clauses: [
+    "השירות: הקמה וניהול של קמפיינים ממומנים ל-{שם העסק} בפלטפורמות: {פלטפורמות}.",
+    "דמי ניהול: {מחיר} ₪ לחודש בתוספת מע\"מ. דמי הניהול לא כוללים את תקציב הפרסום.",
+    "תקציב הפרסום: {תקציב} ₪ לחודש, משולם ישירות לפלטפורמה מאמצעי התשלום של הלקוח.",
+    "גישה: הלקוח מוסיף את מנהלת הקמפיינים כשותפה בחשבון המודעות. סיסמאות לא נמסרות.",
+    "דיווח: דוח ביצועים חודשי עם המלצות לחודש הבא, עד ה-5 בכל חודש.",
+    "תוצאות: הפלטפורמות לא מתחייבות לתוצאות, ולכן אין התחייבות למספר לידים או מכירות.",
+    "תקופה וביטול: 3 חודשים מ-{תאריך התחלה}, ואחר כך ביטול בהודעה של 30 יום מראש.",
+  ] },
+  { id: "supplier", name: "הסכם עם ספק חיצוני (צילום, עריכה)", clauses: [
+    "העבודה: {סוג העבודה} עבור {שם הלקוח}, לפי רשימת המשימות המצורפת.",
+    "תשלום: {מחיר} ₪, תוך 7 ימים ממסירת החומרים.",
+    "זכויות: כל החומרים שייכים ללקוח, והספק לא יפרסם אותם בלי אישור.",
+    "סודיות: פרטי הלקוח והעסק נשארים חסויים.",
+  ] },
 ];

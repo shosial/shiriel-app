@@ -1,5 +1,5 @@
 // Shiriel's own screen ("מעקב"): all users at a glance, the queue of calls waiting for analysis,
-// open feedback requests, recording-help requests, contract templates, monthly numbers and backups.
+// recording-help requests, contract templates, monthly numbers and backups.
 // Privacy: she sees calls and analyses, but never her users' client names or private notes.
 import { useState } from "react";
 import { Text, View, TextInput } from "react-native";
@@ -42,9 +42,6 @@ export function Admin() {
             </View>
           ) : null}
           <Done text={done} />
-          <Section header="בקשות פידבק פתוחות · 1" footer="נסגרות לבד אחרי 24 שעות. את רואה רק את הפוסט, בלי לדעת של איזה לקוח.">
-            <Row title="ריל: טיפול שנתי ב-60 שניות" subtitle={'"הפתיח חזק מספיק?"'} sf="bubble.left" md="chat" onPress={() => {}} />
-          </Section>
           <Section header="בקשות ליווי בחיבור הקלטה">
             <Row hand title="עדי כ." subtitle="ביקשה עזרה בחיבור הקלטה אוטומטית" value="להתקשר" valueColor={c.accent} />
           </Section>

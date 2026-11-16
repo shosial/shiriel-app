@@ -55,14 +55,6 @@ export function ContentItemScreen({ id }: { id: string }) {
         <Row title="שלב" value={stageLabel[stage]} valueColor={inFeed ? c.green : undefined} />
       </Section>
 
-      {item.feedback ? (
-        <View style={{ marginHorizontal: 16, backgroundColor: c.cell, borderRadius: 14, padding: 16, gap: 6, borderStartWidth: 3, borderStartColor: c.accent }}>
-          <Text style={[type.footnote as any, { color: c.secondaryLabel }]}>שאלת את הליווי: "{item.feedback.q}"</Text>
-          <Text style={{ fontFamily: font.hand, fontSize: 17, lineHeight: 26, color: c.label }}>{item.feedback.a}</Text>
-          <Text style={[type.caption as any, { color: c.tertiaryLabel }]}>שיריאל · לפני שעה</Text>
-        </View>
-      ) : null}
-
       {forClient && item.clientAnswer ? (
         <View style={{ marginHorizontal: 16, backgroundColor: c.cell, borderRadius: 14, padding: 16, gap: 4 }}>
           <Text style={[type.footnote as any, { color: c.secondaryLabel }]}>התשובה של הלקוח</Text>
@@ -79,11 +71,6 @@ export function ContentItemScreen({ id }: { id: string }) {
         </Buttons>
       ) : null}
       <Note>{inFeed ? "הפריט מופיע בפיד ובגאנט. זה אותו פריט, לא עותק: כל שינוי כאן מתעדכן גם שם." : "הפריט ייכנס לפיד ולגאנט כשיגיע לאישור סופי."}</Note>
-      <Buttons>
-        <Press onPress={() => setDone("נשלח לליווי. התשובה תגיע תוך 24 שעות")} label="לשלוח לליווי לפידבק">
-          <Text style={[type.body as any, { color: c.label, textDecorationLine: "underline" }]}>לשלוח לליווי לקבלת פידבק</Text>
-        </Press>
-      </Buttons>
     </Screen>
   );
 }
