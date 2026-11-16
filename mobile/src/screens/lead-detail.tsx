@@ -24,9 +24,9 @@ export function LeadDetail({ id }: { id: string }) {
         {l.next ? <Row title="הצעד הבא" value={l.next} /> : null}
       </Section>
       <Section header="פעולות">
-        <Row title="קביעת שיחה" sf="calendar.badge.plus" md="event" onPress={() => {}} />
-        <Row title="הצעת מחיר" sf="doc.richtext" md="request_quote" onPress={() => {}} />
-        <Row title="שליחת חוזה לחתימה" sf="signature" md="draw" onPress={() => {}} />
+        <Row title="קביעת שיחה" sf="calendar.badge.plus" md="event" href="/calendar" />
+        <Row title="הצעת מחיר" sf="doc.richtext" md="request_quote" href="/quote" />
+        <Row title="שליחת חוזה לחתימה" sf="signature" md="draw" href="/contract/k2" />
       </Section>
     </Screen>
   );

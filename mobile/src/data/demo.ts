@@ -12,7 +12,7 @@ export const month = {
 export const waiting = [
   { id: "w1", title: "2 לקוחות עוד לא סומנו כמשלמים החודש", sf: "creditcard", md: "payments", href: "/leads" as const, tone: "sage" as const },
   { id: "w2", title: "ניתוח חדש מחכה לך", sf: "waveform", md: "graphic_eq", href: "/call/c1" as const, tone: "lavender" as const },
-  { id: "w3", title: "סרטון אחד מחכה לאישור סופי", sf: "checkmark.seal", md: "verified", href: "/content" as const, tone: "blush" as const },
+  { id: "w3", title: "פידבק חדש מהליווי על הסטורי שלך", sf: "bubble.left", md: "chat", href: "/item/p4" as const, tone: "blush" as const },
 ];
 
 // Today's steps: small and clear, one thing at a time. The first one not done is "the next step".
@@ -109,10 +109,11 @@ export type ContentItem = {
   id: string; title: string; kind: string; stage: ContentStage; date?: string; tone: string;
   platform?: string; caption?: string; videoUrl?: string; rawUrl?: string;
   clientAnswer?: "approved" | "fix"; fixNote?: string;
+  feedback?: { q: string; a: string };
 };
 
 export const contentDetails: Record<string, Partial<ContentItem>> = {
-  p4: { platform: "אינסטגרם", caption: "יום צילומים אצל לקוחה ✨ ככה נראה מאחורי הקלעים של סרטון אחד שמביא לקוחות. שמרי את זה לפעם הבאה שתצלמי.", videoUrl: "drive.google.com/file/…/final", rawUrl: "drive.google.com/drive/folders/…" },
+  p4: { feedback: { q: "הפתיח מספיק חזק?", a: "הפתיח טוב, אבל תתחילי ישר מהרגע שהמצלמה נכנסת לסטודיו ולא מהחניה. 3 שניות ראשונות זה הכול." }, platform: "אינסטגרם", caption: "יום צילומים אצל לקוחה ✨ ככה נראה מאחורי הקלעים של סרטון אחד שמביא לקוחות. שמרי את זה לפעם הבאה שתצלמי.", videoUrl: "drive.google.com/file/…/final", rawUrl: "drive.google.com/drive/folders/…" },
   p1: { platform: "אינסטגרם", caption: "3 טעויות שאני רואה כמעט בכל עמוד עסקי. איזו מהן את עושה? כתבי לי בתגובות 👇", videoUrl: "instagram.com/reel/…" },
 };
 
@@ -128,4 +129,107 @@ export const clientContent: ContentItem[] = [
   { id: "q4", title: "טיפול שנתי לאופניים ב-60 שניות", kind: "ריל", stage: "approved", date: "20.11", tone: "#636366", platform: "אינסטגרם", caption: "כמה זמן לא עשיתם טיפול לאופניים? 60 שניות של בדיקה שחוסכות תקלה בדרך.", videoUrl: "drive.google.com/file/…/service", clientAnswer: "fix", fixNote: "להוריד את המחיר מהסוף, הוא השתנה" },
   { id: "q5", title: "הכירו את הצוות", kind: "ריל", stage: "edited", date: "24.11", tone: "#8e8e93", platform: "אינסטגרם" },
   { id: "q6", title: "שאלות ותשובות על אופניים חשמליים", kind: "סטורי", stage: "script", tone: "#aeaeb2" },
+];
+
+// Calendar, contracts, quotes, booking (demo).
+export const meetings = [
+  { id: "m1", day: "מחר, שלישי 17.11", time: "10:00", title: "שיחת מכירה עם נועה", sub: "סטודיו פילאטיס · בטלפון", source: "booking" },
+  { id: "m2", day: "מחר, שלישי 17.11", time: "13:30", title: "יום צילומים אצל לקוחה", sub: "יואב, חנות אופניים" },
+  { id: "m3", day: "חמישי 19.11", time: "11:00", title: "פולו-אפ עם דניאל", sub: "מסעדה שכונתית", source: "booking" },
+  { id: "m4", day: "ראשון 22.11", time: "18:00", title: "מפגש ליווי קבוצתי", sub: "בזום" },
+];
+
+export type ContractStatus = "draft" | "sent" | "signed";
+export const contracts = [
+  { id: "k1", client: "יואב פרץ", kind: "ניהול סושיאל חודשי", status: "signed" as ContractStatus, date: "02.11", signedAt: "02.11 · 21:14" },
+  { id: "k2", client: "נועה כהן", kind: "ניהול סושיאל חודשי", status: "sent" as ContractStatus, date: "15.11" },
+  { id: "k3", client: "דנה (צלמת)", kind: "הסכם עם ספק: צילום", status: "draft" as ContractStatus, date: "16.11", supplier: true },
+];
+export const contractStatusLabel: Record<ContractStatus, string> = { draft: "טיוטה", sent: "נשלח, מחכה לחתימה", signed: "נחתם ✓" };
+export const contractClauses = [
+  "השירות: ניהול עמוד האינסטגרם והפייסבוק של {שם העסק}, כולל 12 פוסטים ו-8 רילס בחודש.",
+  "התמורה: {מחיר} ₪ לחודש בתוספת מע\"מ, בתשלום עד ה-5 בכל חודש.",
+  "תקופה: 3 חודשים מ-{תאריך התחלה}, ואחר כך מתחדש מחודש לחודש.",
+  "אישורים: כל תוכן נשלח לאישור הלקוח לפני העלייה. תיקון אחד לכל פריט כלול במחיר.",
+  "ביטול: בהודעה של 30 יום מראש.",
+];
+
+export const quote = {
+  lead: "נועה כהן", business: "סטודיו פילאטיס", validUntil: "30.11",
+  packages: [
+    { id: "a", name: "בסיס", price: 2500, items: ["8 פוסטים בחודש", "4 רילס", "דוח חודשי"] },
+    { id: "b", name: "צמיחה", price: 3500, items: ["12 פוסטים בחודש", "8 רילס", "יום צילום אחד", "דוח חודשי + פגישה"], recommended: true },
+    { id: "c", name: "מלא", price: 5200, items: ["16 פוסטים בחודש", "12 רילס", "2 ימי צילום", "ניהול בוסטים"] },
+  ],
+};
+
+export const booking = {
+  link: "app.shiriel/b/shiriel", duration: 30, prep: 10, gap: 15, maxPerDay: 4, minNotice: "12 שעות", daysAhead: 21,
+  hours: [
+    { day: "ראשון", from: "09:00", to: "14:00" }, { day: "שני", from: "09:00", to: "14:00" },
+    { day: "שלישי", from: "16:00", to: "20:00" }, { day: "רביעי", from: "09:00", to: "14:00" },
+    { day: "חמישי", from: "09:00", to: "13:00" },
+  ],
+  calendars: ["יומן גוגל (אישי)", "iCloud"],
+  slots: ["09:00", "09:45", "10:30", "11:15", "12:00", "13:15"],
+};
+
+// Client folder parts (demo numbers for one client, November).
+export const boosts = {
+  budget: 1500, spent: 1260, payer: "הלקוח (החזר בסוף חודש)", forecast: "התקציב ייגמר בערך ב-26.11",
+  rows: [
+    { id: "b1", video: "רכיבת בוקר בכרמל", goal: "הודעות", spend: 420, reach: 18400, clicks: 312, leads: 14 },
+    { id: "b2", video: "מבצע סוף עונה", goal: "לידים", spend: 640, reach: 26100, clicks: 520, leads: 22 },
+    { id: "b3", video: "איך בוחרים אופניים לילדים", goal: "חשיפה", spend: 200, reach: 31000, clicks: 96, leads: 0 },
+  ],
+};
+export const campaignReport = {
+  file: "meta-export-november.csv", platform: "Meta",
+  metrics: [
+    { label: "הוצאה", value: "₪1,260", change: "+12%" }, { label: "תוצאות (לידים)", value: "36", change: "+29%" },
+    { label: "עלות לתוצאה", value: "₪35", change: "-13%" }, { label: "CTR", value: "1.9%", change: "+0.4" },
+    { label: "CPM", value: "₪16.8", change: "-2.1" }, { label: "תדירות", value: "1.7", change: "+0.2" },
+  ],
+  bottomLine: "חודש טוב: יותר לידים בפחות כסף לליד. המבצע עבד הכי טוב, סרטון החינוך כמעט לא הביא פניות.",
+  worked: ["מודעה עם מחיר ברור (מבצע סוף עונה)", "קהל של 5 ק\"מ מהחנות"],
+  didnt: ["סרטון הסבר ארוך: הרבה צפיות, אפס פניות"],
+  next: ["להעביר 30% מהתקציב לגרסה חדשה של המבצע", "לנסות סרטון קצר עם המלצה של לקוח"],
+};
+export const campaignLeads = {
+  link: "app.shiriel/in/l/Y4P2", total: 41, closed: 9,
+  bySource: [{ name: "פייסבוק", n: 22 }, { name: "אינסטגרם", n: 12 }, { name: "גוגל", n: 5 }, { name: "וואטסאפ", n: 2 }],
+  recent: [
+    { id: "x1", name: "ליד מ-16.11, 20:41", source: "פייסבוק · מבצע סוף עונה", status: "חדש" },
+    { id: "x2", name: "ליד מ-16.11, 18:02", source: "אינסטגרם · טיפול שנתי", status: "חזרו אליו" },
+    { id: "x3", name: "ליד מ-15.11, 11:15", source: "גוגל · טופס באתר", status: "קנה ✓" },
+  ],
+};
+export const fixes = [
+  { id: "f1", video: "טיפול שנתי לאופניים", text: "להוריד את המחיר מהסוף, הוא השתנה", from: "הלקוח", done: false },
+  { id: "f2", video: "הכירו את הצוות", text: "להוסיף כתוביות", from: "את", done: false },
+  { id: "f3", video: "רכיבת בוקר בכרמל", text: "מוזיקה פחות חזקה", from: "הלקוח", done: true },
+];
+export const hours = { thisMonth: "14:20", rate: 3200, perHour: 223, sessions: [
+  { id: "h1", date: "16.11", what: "עריכה: טיפול שנתי", time: "1:40" },
+  { id: "h2", date: "14.11", what: "יום צילומים", time: "4:00" },
+  { id: "h3", date: "12.11", what: "קופי ותזמון", time: "1:10" },
+] };
+export const platforms = [
+  { id: "pl1", name: "אינסטגרם", user: "@yoav.bikes", link: "instagram.com/yoav.bikes" },
+  { id: "pl2", name: "פייסבוק", user: "יואב אופניים", link: "facebook.com/yoavbikes" },
+  { id: "pl3", name: "מנהל מודעות", user: "יש לך גישה כשותפה", link: "business.facebook.com" },
+];
+export const reach = { month: "נובמבר", followers: 4210, followersChange: "+186", reach: 48200, reachChange: "+22%", top: "רכיבת בוקר בכרמל · 19.4 אלף צפיות" };
+export const money = { income: 3200, costs: [{ what: "בוסטים (מוחזר מהלקוח)", sum: 1260 }, { what: "צלמת, חצי יום", sum: 450 }], refund: 1260 };
+
+// Invoices (Morning connected) and admin tracking (no client names reach the admin).
+export const invoices = [
+  { id: "i1", client: "יואב פרץ", sum: 3200, date: "01.11", status: "שולמה" },
+  { id: "i2", client: "רוני שמש", sum: 3200, date: "01.11", status: "באיחור" },
+  { id: "i3", client: "יואב פרץ", sum: 1260, date: "16.11", status: "טיוטה", note: "החזר בוסטים" },
+];
+export const students = [
+  { id: "s1", name: "נוי א.", clients: 2, calls: 3, lastActive: "היום", status: "פעילה" },
+  { id: "s2", name: "מאיה ל.", clients: 1, calls: 7, lastActive: "אתמול", status: "פעילה" },
+  { id: "s3", name: "עדי כ.", clients: 0, calls: 1, lastActive: "לפני 9 ימים", status: "לא פעילה" },
 ];

@@ -8,7 +8,7 @@ export function Calls() {
   return (
     <Screen title="שיחות מכירה" subtitle="מעלים הקלטה, ומקבלים ניתוח מלא בפורמט של 8 החלקים.">
       <Section>
-        <Row title="העלאת הקלטה חדשה" sf="plus" md="add" tone="lavender" onPress={() => {}} />
+        <Row title="העלאת הקלטה חדשה" sf="plus" md="add" href="/upload" />
       </Section>
       <Section header="השיחות שלי">
         {calls.map(call => (

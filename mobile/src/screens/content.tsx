@@ -127,11 +127,11 @@ function ClientMore() {
         <Row title="תיקוני סרטונים" sf="scissors" md="content_cut" href="/cp/fixes" />
         <Row title="שעות עבודה" subtitle="טיימר, וכמה יוצא לשעה" sf="timer" md="timer" href="/cp/hours" />
         <Row title="פרטי פלטפורמות" subtitle="שמות משתמש וקישורים, אף פעם לא סיסמאות" sf="at" md="alternate_email" href="/cp/platforms" />
-        <Row title="חשבוניות" sf="doc.plaintext" md="receipt_long" href="/soon/invoices" />
+        <Row title="חשבוניות" sf="doc.plaintext" md="receipt_long" href="/invoices" />
       </Section>
       <Section header="הלקוח">
         <Row title="תיק הלקוח לבעל העסק" subtitle="מה הוא רואה, ומה מותר לו לעדכן" sf="person.crop.square" md="badge" href="/cp/portal" />
-        <Row title="חוזה והצעת מחיר" sf="signature" md="draw" href="/soon/contracts" />
+        <Row title="חוזה והצעת מחיר" sf="signature" md="draw" href="/contracts" />
       </Section>
     </>
   );
@@ -178,7 +178,7 @@ export function Content({ forClient }: { forClient?: boolean }) {
             ))}
           </Section>
           <Section header="הקמפיינים שלי" footer="כאן מתכננות, עוקבות ומנתחות. את הקמפיין עצמו מרימים מהמחשב, במנהל המודעות. מעלים קובץ ייצוא פעם בחודש ומקבלים ניתוח עם המלצות.">
-            <Row title={myCampaign.name} subtitle={`${shekel(myCampaign.spend)} מתוך ${shekel(myCampaign.budget)} · ${myCampaign.leads} לידים`} value={`${shekel(myCampaign.cpl)} לליד`} sf="chart.bar" md="insights" tone="sand" onPress={() => {}} />
+            <Row title={myCampaign.name} subtitle={`${shekel(myCampaign.spend)} מתוך ${shekel(myCampaign.budget)} · ${myCampaign.leads} לידים`} value={`${shekel(myCampaign.cpl)} לליד`} sf="chart.bar" md="insights" href="/cp/campaigns" />
             <Row title="קמפיין חדש: תכנון בטלפון" subtitle="מטרה, קהל, תקציב ומודעות, שלב אחרי שלב" sf="square.and.pencil" md="edit_note" tone="blush" onPress={() => {}} />
             <Row title="להרים מהמחשב" subtitle="צ'קליסט מוכן + קישור שנשלח אלייך למייל" sf="laptopcomputer" md="laptop" tone="lavender" onPress={() => {}} />
           </Section>
