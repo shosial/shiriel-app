@@ -3,6 +3,7 @@ import { Tabs, TabList, TabTrigger, TabSlot, type TabTriggerSlotProps } from "ex
 import { Pressable, Text } from "react-native";
 import { Icon } from "./icon";
 import { useColors } from "@/theme/colors";
+import { font } from "@/theme/type";
 
 const tabs = [
   { name: "(home)", href: "/", label: "היום", md: "home" },
@@ -15,11 +16,11 @@ const tabs = [
 type ButtonProps = Omit<TabTriggerSlotProps, "ref"> & { label: string; md: string };
 function TabButton({ label, md, isFocused, ...props }: ButtonProps) {
   const c = useColors();
-  const color = isFocused ? c.tint : "#999999";
+  const color = isFocused ? c.tint : c.tertiaryLabel;
   return (
     <Pressable {...props} style={{ flex: 1, alignItems: "center", justifyContent: "center", gap: 2, paddingTop: 6 }}>
       <Icon sf="" md={md} size={25} color={color} weight={isFocused ? "semibold" as any : undefined} />
-      <Text style={{ fontSize: 10, fontWeight: "500", color }}>{label}</Text>
+      <Text style={{ fontSize: 10, fontFamily: isFocused ? font.bold : font.medium, color }}>{label}</Text>
     </Pressable>
   );
 }

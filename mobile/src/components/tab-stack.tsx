@@ -3,10 +3,12 @@
 // the screen draws the large title and a back button itself (right to left, like iOS in Hebrew).
 import { Stack } from "expo-router/stack";
 import { useColors } from "@/theme/colors";
+import { font } from "@/theme/type";
 
 const web = process.env.EXPO_OS === "web";
 
-export function TabStack({ root, title }: { root: string; title: string }) {
+// bare: the root screen draws its own header (the home screen, with the logo)
+export function TabStack({ root, title, bare }: { root: string; title: string; bare?: boolean }) {
   const c = useColors();
   return (
     <Stack
@@ -15,7 +17,8 @@ export function TabStack({ root, title }: { root: string; title: string }) {
         headerShadowVisible: false,
         headerLargeTitleShadowVisible: false,
         headerLargeStyle: { backgroundColor: "transparent" },
-        headerTitleStyle: { color: c.label },
+        headerTitleStyle: { color: c.label, fontFamily: font.bold },
+        headerLargeTitleStyle: { color: c.label, fontFamily: font.black },
         headerTintColor: c.tint,
         headerBlurEffect: "systemMaterial",
         headerBackButtonDisplayMode: "minimal",
@@ -23,7 +26,7 @@ export function TabStack({ root, title }: { root: string; title: string }) {
         contentStyle: { backgroundColor: c.groupedBackground },
       }}
     >
-      <Stack.Screen name={root} options={{ title, headerLargeTitleEnabled: true }} />
+      <Stack.Screen name={root} options={{ title, headerLargeTitleEnabled: true, ...(bare ? { headerShown: false } : null) }} />
     </Stack>
   );
 }

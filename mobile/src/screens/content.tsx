@@ -7,7 +7,7 @@ import { Section, Row } from "@/components/grouped-list";
 import { Segmented } from "@/components/segmented";
 import { Progress } from "@/components/progress";
 import { useColors } from "@/theme/colors";
-import { type } from "@/theme/type";
+import { font, type } from "@/theme/type";
 import { content, contentWeek, myCampaign, shekel, stageLabel, type ContentStage } from "@/data/demo";
 
 type View4 = "board" | "gantt" | "feed" | "track";
@@ -24,9 +24,9 @@ function Feed() {
       <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 2, borderRadius: 12, borderCurve: "continuous", overflow: "hidden" }}>
         {items.map(i => (
           <View key={i.id} style={{ width: size, height: size * 1.25, backgroundColor: i.tone, padding: 8, justifyContent: "space-between", opacity: i.stage === "edited" ? 0.45 : 1 }}>
-            <Text style={{ color: "#fff", fontSize: 11, fontWeight: "600" }}>{i.kind}</Text>
+            <Text style={{ color: "#fff", fontSize: 11, fontFamily: font.bold }}>{i.kind}</Text>
             <View style={{ gap: 2 }}>
-              <Text numberOfLines={3} style={{ color: "#fff", fontSize: 12, fontWeight: "600" }}>{i.title}</Text>
+              <Text numberOfLines={3} style={{ color: "#fff", fontSize: 12, fontFamily: font.bold }}>{i.title}</Text>
               <Text style={{ color: "rgba(255,255,255,0.75)", fontSize: 11, fontVariant: ["tabular-nums"] }}>{i.stage === "live" ? `עלה ${i.date}` : i.date}</Text>
             </View>
           </View>

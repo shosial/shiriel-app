@@ -4,19 +4,19 @@ import { Children, isValidElement, type ReactNode } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { Link, type Href } from "expo-router";
 import { useColors, type Tone } from "@/theme/colors";
-import { type } from "@/theme/type";
+import { font, type } from "@/theme/type";
 import { Icon } from "./icon";
 
 export function Section({ header, footer, children }: { header?: string; footer?: string; children: ReactNode }) {
   const c = useColors();
   const rows = Children.toArray(children).filter(isValidElement);
   return (
-    <View style={{ paddingHorizontal: 16, gap: 7 }}>
-      {header ? <Text style={[type.footnote as any, { color: c.secondaryLabel, paddingHorizontal: 16 }]}>{header}</Text> : null}
-      <View style={{ backgroundColor: c.cell, borderRadius: 16, borderCurve: "continuous", overflow: "hidden", boxShadow: c.shadow }}>
+    <View style={{ paddingHorizontal: 16, gap: 8 }}>
+      {header ? <Text style={[type.headline as any, { color: c.label, fontFamily: font.black, fontSize: 19, paddingHorizontal: 4, paddingBottom: 2 }]}>{header}</Text> : null}
+      <View style={{ backgroundColor: c.cell, borderRadius: 14, borderCurve: "continuous", overflow: "hidden" }}>
         {rows.map((row, i) => (
           <View key={i}>
-            {i > 0 && <View style={{ height: StyleSheet.hairlineWidth, backgroundColor: c.separator, marginStart: (row.props as any).sf ? 62 : 16 }} />}
+            {i > 0 && <View style={{ height: StyleSheet.hairlineWidth, backgroundColor: c.separator, marginStart: (row.props as any).sf ? 58 : 16 }} />}
             {row}
           </View>
         ))}
@@ -46,8 +46,8 @@ export function Row({ title, subtitle, value, valueColor, sf, md, iconBg, tone, 
   const body = (pressed: boolean) => (
     <View style={{ flexDirection: "row", alignItems: "center", gap: 14, minHeight: 44, paddingVertical: subtitle ? 10 : 11, paddingHorizontal: 16, backgroundColor: pressed ? c.fill : "transparent" }}>
       {sf && md ? (
-        <View style={{ width: 32, height: 32, borderRadius: 9, borderCurve: "continuous", backgroundColor: tone ? c[tone] : iconBg ?? c.tint, alignItems: "center", justifyContent: "center" }}>
-          <Icon sf={sf} md={md} size={18} color={tone ? c[`${tone}Ink`] : c.onTint} />
+        <View style={{ width: 28, alignItems: "center", justifyContent: "center" }}>
+          <Icon sf={sf} md={md} size={21} color={iconBg ?? c.label} />
         </View>
       ) : null}
       <View style={{ flex: 1, gap: 2 }}>

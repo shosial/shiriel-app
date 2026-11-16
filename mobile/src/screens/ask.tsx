@@ -12,12 +12,12 @@ import { sampleQA } from "@/data/demo";
 function Bubble({ mine, text, source }: { mine?: boolean; text: string; source?: string }) {
   const c = useColors();
   return (
-    <View style={{ alignSelf: mine ? "flex-start" : "flex-end", maxWidth: "82%", backgroundColor: mine ? c.accent : c.cell, borderRadius: 20, borderCurve: "continuous", paddingHorizontal: 14, paddingVertical: 10, gap: 8, boxShadow: mine ? undefined : c.shadow }}>
-      <Text selectable style={[type.body as any, { color: mine ? c.onAccent : c.label, writingDirection: "rtl" }]}>{text}</Text>
+    <View style={{ alignSelf: mine ? "flex-start" : "flex-end", maxWidth: "82%", backgroundColor: mine ? c.tint : c.cell, borderRadius: 14, borderCurve: "continuous", paddingHorizontal: 14, paddingVertical: 10, gap: 8, boxShadow: mine ? undefined : c.shadow }}>
+      <Text selectable style={[type.body as any, { color: mine ? c.onTint : c.label, writingDirection: "rtl" }]}>{text}</Text>
       {source ? (
-        <View style={{ flexDirection: "row", alignItems: "center", gap: 6, alignSelf: "flex-start", backgroundColor: c.sand, borderRadius: 999, paddingHorizontal: 10, paddingVertical: 4 }}>
-          <Icon sf="book" md="menu_book" size={13} color={c.sandInk} />
-          <Text style={[type.caption as any, { color: c.sandInk, fontWeight: "600" }]}>{source}</Text>
+        <View style={{ flexDirection: "row", alignItems: "center", gap: 6, borderTopWidth: 1, borderTopColor: c.separator, paddingTop: 8 }}>
+          <Icon sf="book" md="menu_book" size={14} color={c.accent} />
+          <Text style={[type.footnote as any, { color: c.accent }]}>{source}</Text>
         </View>
       ) : null}
     </View>
@@ -38,12 +38,12 @@ export function Ask() {
       <View style={{ paddingHorizontal: 16, gap: 10 }}>
         {msgs.map((m, i) => <Bubble key={i} mine={m.mine} text={m.text} source={m.source} />)}
       </View>
-      <View style={{ marginHorizontal: 16, flexDirection: "row", alignItems: "center", gap: 8, backgroundColor: c.cell, boxShadow: c.shadow, borderRadius: 22, paddingStart: 16, paddingEnd: 6, paddingVertical: 6 }}>
+      <View style={{ marginHorizontal: 16, flexDirection: "row", alignItems: "center", gap: 8, backgroundColor: c.cell, borderRadius: 22, paddingStart: 16, paddingEnd: 6, paddingVertical: 6 }}>
         <TextInput value={draft} onChangeText={setDraft} onSubmitEditing={send} placeholder="כתבי שאלה" placeholderTextColor={c.tertiaryLabel}
           style={{ flex: 1, fontSize: 17, color: c.label, textAlign: "right", paddingVertical: 6 }} accessibilityLabel="שאלה לעוזרת" />
         <Pressable onPress={send} accessibilityRole="button" accessibilityLabel="שליחה"
-          style={{ width: 34, height: 34, borderRadius: 17, backgroundColor: c.accent, alignItems: "center", justifyContent: "center" }}>
-          <Icon sf="arrow.up" md="arrow_upward" size={18} color={c.onAccent} weight="bold" />
+          style={{ width: 34, height: 34, borderRadius: 17, backgroundColor: c.tint, alignItems: "center", justifyContent: "center" }}>
+          <Icon sf="arrow.up" md="arrow_upward" size={18} color={c.onTint} weight="bold" />
         </Pressable>
       </View>
     </Screen>
