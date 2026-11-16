@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Shiriel Turgeman</title>
+  <meta name="description" content="גיוס לקוחות, שיחות מכירה וניהול לקוחות, במקום אחד">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#f2f2f2">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Shiriel">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+  <link rel="preload" href="/fonts/heebo-hebrew-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/app.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <img class="logo" src="/logo.png" alt="Shiriel Turgeman – Business Strategy &amp; Marketing" width="1200" height="186">
+  </header>
+
+  <main id="main" class="main" tabindex="-1">
+    <section class="view" data-view="overview">
+      <p class="eyebrow">ברוכה הבאה</p>
+      <h1>האפליקציה בבנייה</h1>
+      <p class="lead">כאן יהיו היעד, הפוסטים, הלידים, שיחות המכירה והלקוחות שלך, במקום אחד.</p>
+
+      <div class="card" id="install-card" hidden>
+        <h2>להתקין כאפליקציה</h2>
+        <p id="install-ios" hidden>באייפון: לוחצים על כפתור השיתוף <span aria-hidden="true">⬆︎</span> ואז על "הוספה למסך הבית".</p>
+        <p id="install-other" hidden>אפשר להוסיף את האפליקציה למסך הבית ולפתוח אותה כמו כל אפליקציה.</p>
+        <button type="button" class="btn" id="install-btn" hidden>להתקנה</button>
+      </div>
+
+      <div class="card subtle">
+        <h2>מצב המערכת</h2>
+        <p id="status">בודקת חיבור…</p>
+      </div>
+    </section>
+
+    <section class="view" data-view="posts" hidden><h1>פוסטים</h1><p class="lead">בקרוב.</p></section>
+    <section class="view" data-view="leads" hidden><h1>לידים ולקוחות</h1><p class="lead">בקרוב.</p></section>
+    <section class="view" data-view="calls" hidden><h1>שיחות מכירה</h1><p class="lead">בקרוב.</p></section>
+    <section class="view" data-view="more" hidden><h1>עוד</h1><p class="lead">יומן, חוזים, ניהול לקוחות וחשבוניות. בקרוב.</p></section>
+  </main>
+
+  <nav class="tabbar" aria-label="ניווט ראשי">
+    <a href="#overview" data-tab="overview" aria-current="page"><span class="ico" aria-hidden="true">◎</span>סקירה</a>
+    <a href="#posts" data-tab="posts"><span class="ico" aria-hidden="true">▦</span>פוסטים</a>
+    <a href="#leads" data-tab="leads"><span class="ico" aria-hidden="true">☰</span>לידים</a>
+    <a href="#calls" data-tab="calls"><span class="ico" aria-hidden="true">◉</span>שיחות</a>
+    <a href="#more" data-tab="more"><span class="ico" aria-hidden="true">⋯</span>עוד</a>
+  </nav>
+</body>
+</html>
