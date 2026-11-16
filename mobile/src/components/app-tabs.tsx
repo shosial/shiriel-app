@@ -10,9 +10,9 @@ export default function AppTabs() {
         <NativeTabs.Trigger.Icon sf={{ default: "house", selected: "house.fill" }} md="home" />
         <NativeTabs.Trigger.Label>סקירה</NativeTabs.Trigger.Label>
       </NativeTabs.Trigger>
-      <NativeTabs.Trigger name="(posts)">
+      <NativeTabs.Trigger name="(content)">
         <NativeTabs.Trigger.Icon sf={{ default: "square.grid.2x2", selected: "square.grid.2x2.fill" }} md="grid_view" />
-        <NativeTabs.Trigger.Label>פוסטים</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Label>התוכן שלי</NativeTabs.Trigger.Label>
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="(leads)">
         <NativeTabs.Trigger.Icon sf={{ default: "person.2", selected: "person.2.fill" }} md="group" />
@@ -22,9 +22,9 @@ export default function AppTabs() {
         <NativeTabs.Trigger.Icon sf={{ default: "waveform", selected: "waveform" }} md="graphic_eq" />
         <NativeTabs.Trigger.Label>שיחות</NativeTabs.Trigger.Label>
       </NativeTabs.Trigger>
-      <NativeTabs.Trigger name="(more)">
-        <NativeTabs.Trigger.Icon sf={{ default: "ellipsis.circle", selected: "ellipsis.circle.fill" }} md="more_horiz" />
-        <NativeTabs.Trigger.Label>עוד</NativeTabs.Trigger.Label>
+      <NativeTabs.Trigger name="(learn)">
+        <NativeTabs.Trigger.Icon sf={{ default: "book", selected: "book.fill" }} md="school" />
+        <NativeTabs.Trigger.Label>למידה</NativeTabs.Trigger.Label>
       </NativeTabs.Trigger>
     </NativeTabs>
   );

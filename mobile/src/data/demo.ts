@@ -12,22 +12,13 @@ export const month = {
 export const waiting = [
   { id: "w1", title: "2 לקוחות עוד לא סומנו כמשלמים החודש", sf: "creditcard", md: "payments", href: "/leads" as const },
   { id: "w2", title: "ניתוח חדש מחכה לך", sf: "waveform", md: "graphic_eq", href: "/call/c1" as const },
-  { id: "w3", title: "דוח חודשי ללקוח אחד (עד ה-7)", sf: "doc.text", md: "description", href: "/more" as const },
+  { id: "w3", title: "סרטון אחד מחכה לאישור סופי", sf: "checkmark.seal", md: "verified", href: "/content" as const },
 ];
 
 export const actions = [
   { id: "a1", text: "לחזור לנועה (סטודיו פילאטיס) עם הצעת מחיר", done: false },
   { id: "a2", text: "להעלות 2 שיחות מכירה מוקלטות השבוע", done: false },
   { id: "a3", text: "לשאול על התקציב כבר בתחילת השיחה (מהניתוח האחרון)", done: true },
-];
-
-export const postGoal = { morning: 5, evening: 5 };
-export const week = [
-  { day: "ראשון", date: "16.11", morning: 5, evening: 5 },
-  { day: "שבת", date: "15.11", morning: 3, evening: 2 },
-  { day: "שישי", date: "14.11", morning: 5, evening: 5 },
-  { day: "חמישי", date: "13.11", morning: 5, evening: 3 },
-  { day: "רביעי", date: "12.11", morning: 5, evening: 5 },
 ];
 
 export const leads = [
@@ -61,3 +52,38 @@ export const calls = [
 ];
 
 export const shekel = (n: number) => `₪${n.toLocaleString("he-IL")}`;
+
+// ---- my content: social management for my own business page ----
+export type ContentStage = "idea" | "script" | "shot" | "edited" | "approved" | "live";
+export const stageLabel: Record<ContentStage, string> = {
+  idea: "רעיונות", script: "תסריט מאושר", shot: "צולם", edited: "ערוך", approved: "אישור סופי", live: "עלה",
+};
+export const content = [
+  { id: "p1", title: "3 טעויות שעסקים עושים באינסטגרם", kind: "ריל", stage: "live" as ContentStage, date: "10.11", tone: "#1c1c1e" },
+  { id: "p2", title: "לפני ואחרי: סטודיו פילאטיס", kind: "קרוסלה", stage: "live" as ContentStage, date: "12.11", tone: "#3a3a3c" },
+  { id: "p3", title: "איך בוחרים קהל יעד לקמפיין", kind: "ריל", stage: "live" as ContentStage, date: "14.11", tone: "#636366" },
+  { id: "p4", title: "יום צילומים אצל לקוחה", kind: "סטורי", stage: "approved" as ContentStage, date: "17.11", tone: "#8e8e93" },
+  { id: "p5", title: "כמה עולה ניהול סושיאל באמת", kind: "ריל", stage: "edited" as ContentStage, date: "19.11", tone: "#aeaeb2" },
+  { id: "p6", title: "המלצה של יואב (חנות אופניים)", kind: "פוסט", stage: "shot" as ContentStage, date: "21.11" , tone: "#c7c7cc" },
+  { id: "p7", title: "5 רעיונות לתוכן לעסק מקומי", kind: "קרוסלה", stage: "script" as ContentStage, tone: "#d1d1d6" },
+  { id: "p8", title: "שאלות ותשובות על קמפיינים", kind: "ריל", stage: "idea" as ContentStage, tone: "#e5e5ea" },
+  { id: "p9", title: "מאחורי הקלעים של העסק", kind: "סטורי", stage: "idea" as ContentStage, tone: "#e5e5ea" },
+];
+export const contentWeek = { reels: 3, goalReels: 4, posts: 2, goalPosts: 3, stories: 9, goalStories: 10 };
+export const myCampaign = { name: "לידים לניהול סושיאל", spend: 1240, leads: 31, cpl: 40, budget: 2000 };
+
+// ---- learning portal and AI ----
+export const courses = [
+  { id: "k1", title: "גיוס לקוחות מאפס", lessons: 12, done: 7 },
+  { id: "k2", title: "שיחת מכירה שסוגרת", lessons: 8, done: 2 },
+  { id: "k3", title: "קמפיינים ממומנים למתחילות", lessons: 10, done: 0 },
+];
+export const agents = [
+  { id: "g1", title: "כותבת תסריטים לרילס", subtitle: "נותנים נושא, מקבלים תסריט לפי השלבים", sf: "film", md: "movie" },
+  { id: "g2", title: "רעיונות לתוכן לחודש", subtitle: "גאנט רעיונות לפי התחום והקהל שלך", sf: "lightbulb", md: "lightbulb" },
+  { id: "g3", title: "ניסוח הצעת מחיר", subtitle: "הצעה מסודרת מהפרטים של הליד", sf: "doc.richtext", md: "request_quote" },
+];
+export const sampleQA = {
+  q: "לקוחה אמרה שהיא צריכה לחשוב על זה. מה עונים?",
+  a: "קודם לשאול על מה בדיוק היא רוצה לחשוב: המחיר, התזמון, או אם זה יעבוד אצלה. ברוב המקרים מאחורי \"לחשוב\" יש התנגדות אחת ספציפית. אחרי שהיא אומרת אותה, עונים עליה ישירות, ומציעים צעד קטן וברור להמשך (למשל שיחה קצרה ביום שנקבע עכשיו).",
+};

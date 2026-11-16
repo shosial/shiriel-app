@@ -27,7 +27,12 @@
       "lang": "he"
     },
     "plugins": [
-      "expo-router",
+      [
+        "expo-router",
+        {
+          "asyncRoutes": false
+        }
+      ],
       [
         "expo-localization",
         {
