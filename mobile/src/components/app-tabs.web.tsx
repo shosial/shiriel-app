@@ -6,10 +6,10 @@ import { useColors } from "@/theme/colors";
 
 const tabs = [
   { name: "(home)", href: "/", label: "סקירה", md: "home" },
-  { name: "(posts)", href: "/posts", label: "פוסטים", md: "grid_view" },
+  { name: "(content)", href: "/content", label: "התוכן שלי", md: "grid_view" },
   { name: "(leads)", href: "/leads", label: "לידים", md: "group" },
   { name: "(calls)", href: "/calls", label: "שיחות", md: "graphic_eq" },
-  { name: "(more)", href: "/more", label: "עוד", md: "more_horiz" },
+  { name: "(learn)", href: "/learn", label: "למידה", md: "school" },
 ] as const;
 
 type ButtonProps = Omit<TabTriggerSlotProps, "ref"> & { label: string; md: string };

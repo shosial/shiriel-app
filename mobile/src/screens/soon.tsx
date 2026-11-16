@@ -5,8 +5,8 @@ import { useColors } from "@/theme/colors";
 import { type } from "@/theme/type";
 
 export const soonTitles: Record<string, string> = {
-  calendar: "יומן", contracts: "חוזים", quotes: "הצעות מחיר", booking: "קביעת פגישות",
-  clients: "ניהול לקוחות", campaigns: "ניתוח קמפיינים", invoices: "חשבוניות", content: "התוכן שלי", settings: "הגדרות",
+  calendar: "יומן", contracts: "חוזים והצעות מחיר", quotes: "הצעות מחיר", booking: "קביעת פגישות",
+  clients: "ניהול לקוחות", campaigns: "ניתוח קמפיינים", invoices: "חשבוניות", settings: "הגדרות",
 };
 
 export function Soon({ slug }: { slug: string }) {

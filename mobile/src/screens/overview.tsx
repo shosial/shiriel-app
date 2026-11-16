@@ -5,6 +5,8 @@ import { Progress } from "@/components/progress";
 import { Icon } from "@/components/icon";
 import { useColors } from "@/theme/colors";
 import { type } from "@/theme/type";
+import { AskBar } from "./learn";
+import { Tools } from "./tools";
 import { actions, me, month, shekel, waiting } from "@/data/demo";
 
 function Stat({ label, value }: { label: string; value: string }) {
@@ -28,6 +30,8 @@ export function Overview() {
         <Text style={[type.subhead as any, { color: c.secondaryLabel, fontVariant: ["tabular-nums"] }]}>{me.goalDone} מתוך {me.goalTotal}</Text>
       </View>
 
+      <AskBar />
+
       <Section header="מחכה לטיפול">
         {waiting.map(w => <Row key={w.id} title={w.title} sf={w.sf} md={w.md} href={w.href} />)}
       </Section>
@@ -49,6 +53,8 @@ export function Overview() {
             accessory={<Icon sf={a.done ? "checkmark.circle.fill" : "circle"} md={a.done ? "check_circle" : "radio_button_unchecked"} size={22} color={a.done ? c.green : c.tertiaryLabel} />} />
         ))}
       </Section>
+
+      <Tools />
     </Screen>
   );
 }
