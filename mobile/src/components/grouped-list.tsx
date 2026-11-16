@@ -3,7 +3,7 @@
 import { Children, isValidElement, type ReactNode } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { Link, type Href } from "expo-router";
-import { useColors } from "@/theme/colors";
+import { useColors, type Tone } from "@/theme/colors";
 import { type } from "@/theme/type";
 import { Icon } from "./icon";
 
@@ -13,10 +13,10 @@ export function Section({ header, footer, children }: { header?: string; footer?
   return (
     <View style={{ paddingHorizontal: 16, gap: 7 }}>
       {header ? <Text style={[type.footnote as any, { color: c.secondaryLabel, paddingHorizontal: 16 }]}>{header}</Text> : null}
-      <View style={{ backgroundColor: c.cell, borderRadius: 12, borderCurve: "continuous", overflow: "hidden" }}>
+      <View style={{ backgroundColor: c.cell, borderRadius: 16, borderCurve: "continuous", overflow: "hidden", boxShadow: c.shadow }}>
         {rows.map((row, i) => (
           <View key={i}>
-            {i > 0 && <View style={{ height: StyleSheet.hairlineWidth, backgroundColor: c.separator, marginStart: (row.props as any).sf ? 58 : 16 }} />}
+            {i > 0 && <View style={{ height: StyleSheet.hairlineWidth, backgroundColor: c.separator, marginStart: (row.props as any).sf ? 62 : 16 }} />}
             {row}
           </View>
         ))}
@@ -34,19 +34,20 @@ type RowProps = {
   sf?: string;
   md?: string;
   iconBg?: any;
+  tone?: Tone;
   href?: Href;
   onPress?: () => void;
   accessory?: ReactNode;
 };
 
-export function Row({ title, subtitle, value, valueColor, sf, md, iconBg, href, onPress, accessory }: RowProps) {
+export function Row({ title, subtitle, value, valueColor, sf, md, iconBg, tone, href, onPress, accessory }: RowProps) {
   const c = useColors();
   const pressable = !!(href || onPress);
   const body = (pressed: boolean) => (
     <View style={{ flexDirection: "row", alignItems: "center", gap: 14, minHeight: 44, paddingVertical: subtitle ? 10 : 11, paddingHorizontal: 16, backgroundColor: pressed ? c.fill : "transparent" }}>
       {sf && md ? (
-        <View style={{ width: 30, height: 30, borderRadius: 7, borderCurve: "continuous", backgroundColor: iconBg ?? c.tint, alignItems: "center", justifyContent: "center" }}>
-          <Icon sf={sf} md={md} size={18} color={c.onTint} />
+        <View style={{ width: 32, height: 32, borderRadius: 9, borderCurve: "continuous", backgroundColor: tone ? c[tone] : iconBg ?? c.tint, alignItems: "center", justifyContent: "center" }}>
+          <Icon sf={sf} md={md} size={18} color={tone ? c[`${tone}Ink`] : c.onTint} />
         </View>
       ) : null}
       <View style={{ flex: 1, gap: 2 }}>

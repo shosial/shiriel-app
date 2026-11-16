@@ -10,15 +10,29 @@ export const month = {
 };
 
 export const waiting = [
-  { id: "w1", title: "2 לקוחות עוד לא סומנו כמשלמים החודש", sf: "creditcard", md: "payments", href: "/leads" as const },
-  { id: "w2", title: "ניתוח חדש מחכה לך", sf: "waveform", md: "graphic_eq", href: "/call/c1" as const },
-  { id: "w3", title: "סרטון אחד מחכה לאישור סופי", sf: "checkmark.seal", md: "verified", href: "/content" as const },
+  { id: "w1", title: "2 לקוחות עוד לא סומנו כמשלמים החודש", sf: "creditcard", md: "payments", href: "/leads" as const, tone: "sage" as const },
+  { id: "w2", title: "ניתוח חדש מחכה לך", sf: "waveform", md: "graphic_eq", href: "/call/c1" as const, tone: "lavender" as const },
+  { id: "w3", title: "סרטון אחד מחכה לאישור סופי", sf: "checkmark.seal", md: "verified", href: "/content" as const, tone: "blush" as const },
 ];
 
-export const actions = [
-  { id: "a1", text: "לחזור לנועה (סטודיו פילאטיס) עם הצעת מחיר", done: false },
-  { id: "a2", text: "להעלות 2 שיחות מכירה מוקלטות השבוע", done: false },
-  { id: "a3", text: "לשאול על התקציב כבר בתחילת השיחה (מהניתוח האחרון)", done: true },
+// Today's steps: small and clear, one thing at a time. The first one not done is "the next step".
+export const today = {
+  dateLabel: "יום שני, 16 בנובמבר",
+  greeting: "ערב טוב",
+  streak: 6,
+  steps: [
+    { id: "s1", text: "לצלם סטורי מאחורי הקלעים", why: "התוכן שלי", done: true },
+    { id: "s2", text: "לענות ל-3 הלידים החדשים", why: "לידים", done: true },
+    { id: "s3", text: "לחזור לנועה (סטודיו פילאטיס) עם הצעת מחיר", why: "היא ביקשה עד מחר", done: false },
+    { id: "s4", text: "להעלות את השיחה עם דניאל לניתוח", why: "שיחות", done: false },
+    { id: "s5", text: "לצפות בשיעור 8: איך מתמחרים ריטיינר", why: "למידה · 12 דקות", done: false },
+  ],
+};
+
+export const tomorrow = [
+  { id: "t1", time: "10:00", title: "שיחת מכירה עם נועה", sub: "סטודיו פילאטיס", tone: "sage" as const },
+  { id: "t2", time: "13:30", title: "יום צילומים אצל לקוחה", sub: "סטורי לעמוד שלך", tone: "blush" as const },
+  { id: "t3", time: "18:00", title: "מפגש ליווי קבוצתי", sub: "בזום", tone: "sand" as const },
 ];
 
 export const leads = [
@@ -86,4 +100,5 @@ export const agents = [
 export const sampleQA = {
   q: "לקוחה אמרה שהיא צריכה לחשוב על זה. מה עונים?",
   a: "קודם לשאול על מה בדיוק היא רוצה לחשוב: המחיר, התזמון, או אם זה יעבוד אצלה. ברוב המקרים מאחורי \"לחשוב\" יש התנגדות אחת ספציפית. אחרי שהיא אומרת אותה, עונים עליה ישירות, ומציעים צעד קטן וברור להמשך (למשל שיחה קצרה ביום שנקבע עכשיו).",
+  source: "מתוך: שיחת מכירה שסוגרת, שיעור 5",
 };

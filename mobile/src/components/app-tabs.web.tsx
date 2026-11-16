@@ -5,7 +5,7 @@ import { Icon } from "./icon";
 import { useColors } from "@/theme/colors";
 
 const tabs = [
-  { name: "(home)", href: "/", label: "סקירה", md: "home" },
+  { name: "(home)", href: "/", label: "היום", md: "home" },
   { name: "(content)", href: "/content", label: "התוכן שלי", md: "grid_view" },
   { name: "(leads)", href: "/leads", label: "לידים", md: "group" },
   { name: "(calls)", href: "/calls", label: "שיחות", md: "graphic_eq" },

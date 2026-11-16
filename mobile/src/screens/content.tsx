@@ -110,8 +110,10 @@ export function Content() {
               </View>
             ))}
           </Section>
-          <Section header="הקמפיינים שלי" footer="מעלים קובץ ייצוא מ-Meta פעם בחודש, ומקבלים ניתוח עם המלצות לחודש הבא.">
-            <Row title={myCampaign.name} subtitle={`${shekel(myCampaign.spend)} מתוך ${shekel(myCampaign.budget)} · ${myCampaign.leads} לידים`} value={`${shekel(myCampaign.cpl)} לליד`} sf="chart.bar" md="insights" onPress={() => {}} />
+          <Section header="הקמפיינים שלי" footer="כאן מתכננות, עוקבות ומנתחות. את הקמפיין עצמו מרימים מהמחשב, במנהל המודעות. מעלים קובץ ייצוא פעם בחודש ומקבלים ניתוח עם המלצות.">
+            <Row title={myCampaign.name} subtitle={`${shekel(myCampaign.spend)} מתוך ${shekel(myCampaign.budget)} · ${myCampaign.leads} לידים`} value={`${shekel(myCampaign.cpl)} לליד`} sf="chart.bar" md="insights" tone="sand" onPress={() => {}} />
+            <Row title="קמפיין חדש: תכנון בטלפון" subtitle="מטרה, קהל, תקציב ומודעות, שלב אחרי שלב" sf="square.and.pencil" md="edit_note" tone="blush" onPress={() => {}} />
+            <Row title="להרים מהמחשב" subtitle="צ'קליסט מוכן + קישור שנשלח אלייך למייל" sf="laptopcomputer" md="laptop" tone="lavender" onPress={() => {}} />
           </Section>
         </>
       )}

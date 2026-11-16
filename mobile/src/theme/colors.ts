@@ -1,68 +1,63 @@
-// One palette for the whole app, following Apple's Human Interface Guidelines.
-// On iPhone and Android the colors come from the system (they follow light/dark mode and accessibility
-// settings by themselves). On the web they come from the matching iOS values below.
-import { Platform, useColorScheme } from "react-native";
-import { Color } from "expo-router";
+// One palette for the whole app. The look: warm and calm. Cream background, white cards with a soft
+// shadow, warm black for the brand (the logo is black and white), one blush accent, and a soft tone
+// per area (content = blush, leads = sage, calls = lavender, learning = sand) so every area has a feel.
+// Every color has a light and a dark version; the app follows the phone setting.
+import { useColorScheme } from "react-native";
 
-const web = {
-  light: {
-    label: "#000000",
-    secondaryLabel: "rgba(60,60,67,0.6)",
-    tertiaryLabel: "rgba(60,60,67,0.3)",
-    separator: "rgba(60,60,67,0.29)",
-    groupedBackground: "#f2f2f7",
-    cell: "#ffffff",
-    fill: "rgba(118,118,128,0.12)",
-    tint: "#000000",
-    onTint: "#ffffff",
-    green: "#34c759",
-    orange: "#ff9500",
-    red: "#ff3b30",
-    blue: "#007aff",
-    bar: "rgba(249,249,249,0.85)",
-  },
-  dark: {
-    label: "#ffffff",
-    secondaryLabel: "rgba(235,235,245,0.6)",
-    tertiaryLabel: "rgba(235,235,245,0.3)",
-    separator: "rgba(84,84,88,0.6)",
-    groupedBackground: "#000000",
-    cell: "#1c1c1e",
-    fill: "rgba(118,118,128,0.24)",
-    tint: "#ffffff",
-    onTint: "#000000",
-    green: "#30d158",
-    orange: "#ff9f0a",
-    red: "#ff453a",
-    blue: "#0a84ff",
-    bar: "rgba(22,22,22,0.85)",
-  },
+const light = {
+  label: "#1c1814",
+  secondaryLabel: "rgba(60,48,38,0.62)",
+  tertiaryLabel: "rgba(60,48,38,0.32)",
+  separator: "rgba(60,48,38,0.14)",
+  groupedBackground: "#f7f3ee",
+  cell: "#ffffff",
+  fill: "rgba(120,96,72,0.10)",
+  tint: "#1c1814",
+  onTint: "#ffffff",
+  accent: "#c27a63",
+  onAccent: "#ffffff",
+  green: "#3f9b67",
+  orange: "#e08a2e",
+  red: "#d9534f",
+  blue: "#4a78c2",
+  bar: "rgba(250,247,243,0.9)",
+  shadow: "0 1px 2px rgba(60,40,20,0.05), 0 4px 14px rgba(60,40,20,0.06)",
+  // area tones: a soft background and a stronger ink for icons on it
+  blush: "#f6e3dc", blushInk: "#a85a43",
+  sage: "#e1ebdf", sageInk: "#4c7a52",
+  lavender: "#e7e3f3", lavenderInk: "#6b5ca8",
+  sand: "#f3e9d4", sandInk: "#9a7430",
+  hero: "#1c1814", onHero: "#fbf6f0",
 };
 
-export type Palette = Record<keyof typeof web.light, any>;
+const dark: typeof light = {
+  label: "#f5efe8",
+  secondaryLabel: "rgba(245,239,232,0.62)",
+  tertiaryLabel: "rgba(245,239,232,0.3)",
+  separator: "rgba(245,239,232,0.12)",
+  groupedBackground: "#13110f",
+  cell: "#1f1b18",
+  fill: "rgba(245,239,232,0.10)",
+  tint: "#f5efe8",
+  onTint: "#13110f",
+  accent: "#e0a08a",
+  onAccent: "#13110f",
+  green: "#5cc285",
+  orange: "#f0a24a",
+  red: "#ef6b66",
+  blue: "#7aa2e6",
+  bar: "rgba(24,21,19,0.9)",
+  shadow: "0 1px 2px rgba(0,0,0,0.3)",
+  blush: "#3b2923", blushInk: "#eaa58f",
+  sage: "#25302a", sageInk: "#93c79a",
+  lavender: "#2b2838", lavenderInk: "#b3a6ec",
+  sand: "#352e22", sandInk: "#e3c27e",
+  hero: "#2a2420", onHero: "#fbf6f0",
+};
 
-function nativePalette(dark: boolean): Palette {
-  const w = dark ? web.dark : web.light;
-  return {
-    label: Platform.select({ ios: Color.ios.label, android: Color.android.dynamic.onSurface, default: w.label })!,
-    secondaryLabel: Platform.select({ ios: Color.ios.secondaryLabel, android: Color.android.dynamic.onSurfaceVariant, default: w.secondaryLabel })!,
-    tertiaryLabel: Platform.select({ ios: Color.ios.tertiaryLabel, android: Color.android.dynamic.outline, default: w.tertiaryLabel })!,
-    separator: Platform.select({ ios: Color.ios.separator, android: Color.android.dynamic.outlineVariant, default: w.separator })!,
-    groupedBackground: Platform.select({ ios: Color.ios.systemGroupedBackground, android: Color.android.dynamic.surface, default: w.groupedBackground })!,
-    cell: Platform.select({ ios: Color.ios.secondarySystemGroupedBackground, android: Color.android.dynamic.surfaceContainer, default: w.cell })!,
-    fill: Platform.select({ ios: Color.ios.tertiarySystemFill, android: Color.android.dynamic.surfaceVariant, default: w.fill })!,
-    // the brand is black and white: black in light mode, white in dark mode
-    tint: w.tint,
-    onTint: w.onTint,
-    green: Platform.select({ ios: Color.ios.systemGreen, default: w.green })!,
-    orange: Platform.select({ ios: Color.ios.systemOrange, default: w.orange })!,
-    red: Platform.select({ ios: Color.ios.systemRed, default: w.red })!,
-    blue: Platform.select({ ios: Color.ios.systemBlue, default: w.blue })!,
-    bar: w.bar,
-  };
-}
+export type Palette = Record<keyof typeof light, any>;
+export type Tone = "blush" | "sage" | "lavender" | "sand";
 
 export function useColors(): Palette {
-  const dark = useColorScheme() === "dark";
-  return process.env.EXPO_OS === "web" ? (dark ? web.dark : web.light) : nativePalette(dark);
+  return useColorScheme() === "dark" ? dark : light;
 }

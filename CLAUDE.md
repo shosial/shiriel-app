@@ -28,4 +28,8 @@ Users get access after paying (Morning payment page → email added to the allow
   large titles, inset grouped lists, system colors (`src/theme/colors.ts`), SF Symbols (Material on Android/web), dark mode.
 - Right to left: `expo-localization` forcesRTL in app.json for native; on the web the root view carries `lang="he" dir="rtl"`.
 - `public/` (the first PWA shell) stays until the app's web build replaces it.
+- The look (16.11.2026, waiting for Shiriel's approval): warm, not corporate. Cream background, white cards with a soft
+  shadow, warm black for the brand, one blush accent, a soft tone per area (`blush`, `sage`, `lavender`, `sand` in
+  `src/theme/colors.ts`). Home is "היום שלי": the one next step first, then small wins (today's steps, a streak).
+  Short fade-up motion, press feedback, haptics on the phone. Users are young beginners: encouraging, no jargon.
 - Before merging: `cd mobile && npm run typecheck`.

@@ -8,7 +8,7 @@ export default function AppTabs() {
     <NativeTabs tintColor={c.tint}>
       <NativeTabs.Trigger name="(home)">
         <NativeTabs.Trigger.Icon sf={{ default: "house", selected: "house.fill" }} md="home" />
-        <NativeTabs.Trigger.Label>סקירה</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Label>היום</NativeTabs.Trigger.Label>
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="(content)">
         <NativeTabs.Trigger.Icon sf={{ default: "square.grid.2x2", selected: "square.grid.2x2.fill" }} md="grid_view" />
