@@ -1,6 +1,6 @@
 # Shiriel app – rules for working in this repo
 
-The product: an app (PWA now, Capacitor wrapper for the stores later) for Shiriel Turgeman's own business,
+The product: a native app built with Expo (`mobile/`), with the Express server at the root as its API, for Shiriel Turgeman's own business,
 built on the "recruitment app" of the academy (shosial/recruitment-app, which stays untouched and live).
 Users get access after paying (Morning payment page → email added to the allowed list), then log in with email + one-time code.
 
@@ -21,3 +21,11 @@ Users get access after paying (Morning payment page → email added to the allow
 - `npm test` (add `TEST_DATABASE_URL=...` to also test the schema; it WIPES that database)
 - `npm run migrate`
 - `npm run icons` redraws the app icons from the brand
+
+## The app (mobile/)
+- Expo (React Native + Expo Router) in `mobile/`, chosen over the PWA. The Express server at the repo root is its API.
+- Use the Expo plugin skills (expo-overview → expo-native-ui, expo-router, expo-ui) for all app and design work. Clean Apple HIG look:
+  large titles, inset grouped lists, system colors (`src/theme/colors.ts`), SF Symbols (Material on Android/web), dark mode.
+- Right to left: `expo-localization` forcesRTL in app.json for native; on the web the root view carries `lang="he" dir="rtl"`.
+- `public/` (the first PWA shell) stays until the app's web build replaces it.
+- Before merging: `cd mobile && npm run typecheck`.
