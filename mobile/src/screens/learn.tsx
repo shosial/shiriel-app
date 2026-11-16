@@ -13,9 +13,9 @@ export function AskBar() {
   const c = useColors();
   const router = useRouter();
   return (
-    <Pressable accessibilityRole="link" onPress={() => router.push("/ask")} style={({ pressed }) => ({ marginHorizontal: 16, flexDirection: "row", alignItems: "center", gap: 10, backgroundColor: pressed ? c.fill : c.cell, borderRadius: 12, borderCurve: "continuous", paddingHorizontal: 14, paddingVertical: 12 })}>
-        <Icon sf="sparkles" md="auto_awesome" size={20} color={c.tint} />
-        <Text style={[type.body as any, { color: c.secondaryLabel, flex: 1 }]}>שאלי את העוזרת שלך…</Text>
+    <Pressable accessibilityRole="link" onPress={() => router.push("/ask")} style={({ pressed }) => ({ marginHorizontal: 16, flexDirection: "row", alignItems: "center", gap: 10, borderWidth: 1, borderColor: c.label, opacity: pressed ? 0.7 : 1, borderRadius: 4, borderCurve: "continuous", paddingHorizontal: 14, paddingVertical: 12 })}>
+        <Icon sf="text.bubble" md="chat_bubble" size={20} color={c.label} />
+        <Text style={[type.body as any, { color: c.label, flex: 1 }]}>שאלי את העוזרת שלך…</Text>
     </Pressable>
   );
 }
@@ -28,11 +28,11 @@ export function Learn() {
       <Section header="הקורסים שלי">
         {courses.map(k => (
           <Row key={k.id} title={k.title} subtitle={k.done ? `${k.done} מתוך ${k.lessons} שיעורים` : `${k.lessons} שיעורים`} onPress={() => {}}
-            accessory={<View style={{ width: 56 }}><Progress value={k.done / k.lessons} /></View>} />
+            accessory={<View style={{ width: 56 }}><Progress value={k.done / k.lessons} color={c.accent} /></View>} />
         ))}
       </Section>
-      <Section header="סוכני AI" footer="כל סוכן עושה עבודה אחת, לפי השיטה שלמדת בקורס.">
-        {agents.map(g => <Row key={g.id} title={g.title} subtitle={g.subtitle} sf={g.sf} md={g.md} onPress={() => {}} />)}
+      <Section header="סוכני AI" footer="כל סוכן עושה עבודה אחת, לפי השיטה שלמדת בקורס. העוזרת עונה רק מתוך החומרים של הקורס.">
+        {agents.map(g => <Row key={g.id} title={g.title} subtitle={g.subtitle} sf={g.sf} md={g.md} tone="sand" onPress={() => {}} />)}
       </Section>
     </Screen>
   );

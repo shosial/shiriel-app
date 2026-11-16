@@ -8,13 +8,13 @@ export function Calls() {
   return (
     <Screen title="שיחות מכירה" subtitle="מעלים הקלטה, ומקבלים ניתוח מלא בפורמט של 8 החלקים.">
       <Section>
-        <Row title="העלאת הקלטה חדשה" sf="plus" md="add" onPress={() => {}} />
+        <Row title="העלאת הקלטה חדשה" sf="plus" md="add" href="/upload" />
       </Section>
       <Section header="השיחות שלי">
         {calls.map(call => (
-          <Row key={call.id} href={call.status === "done" ? `/call/${call.id}` : undefined} title={call.label}
-            subtitle={`${call.date} · ${call.duration}${call.result ? ` · ${call.result}` : ""}`}
-            value={call.status === "done" ? "מנותחת" : "ממתינה לניתוח"} valueColor={call.status === "done" ? c.green : c.orange} />
+          <Row key={call.id} href={call.status === "done" ? `/call/${call.id}` : undefined} title={call.label} hand
+            subtitle={`${call.date} · ${call.duration}`} note={call.result}
+            value={call.status === "done" ? "נותחה ✓" : "ממתינה לניתוח…"} valueColor={call.status === "done" ? c.green : c.orange} />
         ))}
       </Section>
     </Screen>

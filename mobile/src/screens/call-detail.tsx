@@ -7,7 +7,7 @@ import { Section, Row } from "@/components/grouped-list";
 import { Progress } from "@/components/progress";
 import { Icon } from "@/components/icon";
 import { useColors } from "@/theme/colors";
-import { type } from "@/theme/type";
+import { font, type } from "@/theme/type";
 import { calls } from "@/data/demo";
 
 function Minutes({ text, onSeek }: { text: string; onSeek: (t: string) => void }) {
@@ -16,7 +16,7 @@ function Minutes({ text, onSeek }: { text: string; onSeek: (t: string) => void }
   return (
     <Text style={[type.body as any, { color: c.label, writingDirection: "rtl" }]}>
       {parts.map((p, i) => /^\d{1,2}:\d{2}$/.test(p)
-        ? <Text key={i} onPress={() => onSeek(p)} accessibilityRole="button" style={{ color: c.blue, fontWeight: "600", fontVariant: ["tabular-nums"] }}>{p}</Text>
+        ? <Text key={i} onPress={() => onSeek(p)} accessibilityRole="button" style={{ color: c.accent, fontFamily: font.bold, fontVariant: ["tabular-nums"] }}>{p}</Text>
         : <Text key={i}>{i > 0 ? `\u200F\u2060${p}` : p}</Text>)}
     </Text>
   );
@@ -33,7 +33,10 @@ export function CallDetail({ id }: { id: string }) {
   const pos = (mm * 60 + ss) / (dm * 60 + ds);
 
   return (
-    <Screen back title={call.label} subtitle={`${call.date} · ${call.duration}${call.result ? ` · ${call.result}` : ""}`}>
+    <Screen back title={call.label} subtitle={`${call.date} · ${call.duration}`}>
+      <Text style={{ fontFamily: font.handMedium, fontSize: 18, lineHeight: 26, color: c.green, paddingHorizontal: 20, writingDirection: "rtl" }}>
+        נותחה ✓{call.result ? <Text style={{ color: c.accent }}>{`  ·  ${call.result}`}</Text> : null}
+      </Text>
       <View style={{ marginHorizontal: 16, backgroundColor: c.cell, borderRadius: 12, borderCurve: "continuous", padding: 16, gap: 12 }}>
         <View style={{ flexDirection: "row", alignItems: "center", gap: 14 }}>
           <Pressable onPress={() => setPlaying(p => !p)} accessibilityRole="button" accessibilityLabel={playing ? "השהיה" : "ניגון"}

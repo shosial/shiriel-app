@@ -17,8 +17,9 @@ export function Leads() {
         options={[{ key: "open", label: "בתהליך" }, { key: "clients", label: "לקוחות" }, { key: "all", label: "הכול" }]} />
       <Section header={filter === "clients" ? "תשלום לחודש נובמבר" : undefined}>
         {shown.map(l => (
-          <Row key={l.id} href={`/lead/${l.id}`} title={l.name}
-            subtitle={filter === "clients" ? `${l.business} · ${shekel(l.price ?? 0)} לחודש` : `${l.business} · ${l.source}${l.next ? ` · ${l.next}` : ""}`}
+          <Row key={l.id} href={`/lead/${l.id}`} title={l.name} hand
+            subtitle={filter === "clients" ? `${l.business} · ${shekel(l.price ?? 0)} לחודש` : `${l.business} · ${l.source}`}
+            note={l.next}
             value={l.status === "closed" ? (l.paid ? "שולם" : "לא סומן") : statusLabel[l.status]}
             valueColor={l.status === "closed" ? (l.paid ? c.green : c.orange) : undefined} />
         ))}

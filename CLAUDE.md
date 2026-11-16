@@ -28,4 +28,12 @@ Users get access after paying (Morning payment page → email added to the allow
   large titles, inset grouped lists, system colors (`src/theme/colors.ts`), SF Symbols (Material on Android/web), dark mode.
 - Right to left: `expo-localization` forcesRTL in app.json for native; on the web the root view carries `lang="he" dir="rtl"`.
 - `public/` (the first PWA shell) stays until the app's web build replaces it.
+- The look (16.11.2026, waiting for Shiriel's approval): the brand first. Black on light gray (#f2f2f2) like the logo,
+  white surfaces, one warm terracotta accent used sparingly (the next step, done marks). Type: Heebo (heavy for
+  headlines) and Poppins for numbers and Latin labels (`src/theme/type.ts`, files in `mobile/assets/fonts`).
+  Editorial layout, not a dashboard: the logo on the home screen, hairline rules, numbered lists, big light numerals,
+  plain line icons. Leads, clients and calls add a soft handwriting (Playpen Sans Hebrew, OFL) for names, notes and statuses.
+  Avoid the generic template look: no pastel tiles, emoji-like icons, pills or soft shadows.
+  Home is "היום שלי": the one next step first (black block), then today's steps 01-05 and small wins.
+  Users are young beginners: encouraging, no jargon.
 - Before merging: `cd mobile && npm run typecheck`.
