@@ -36,11 +36,11 @@ export const tomorrow = [
 ];
 
 export const leads = [
-  { id: "l1", name: "נועה כהן", business: "סטודיו פילאטיס", source: "אינסטגרם", status: "meeting" as LeadStatus, next: "שיחה מחר 10:00", price: 3500 },
-  { id: "l2", name: "דניאל לוי", business: "מסעדה שכונתית", source: "המלצה", status: "followup" as LeadStatus, next: "פולו-אפ ביום חמישי" },
+  { id: "l1", name: "נועה כהן", business: "סטודיו פילאטיס", source: "אינסטגרם", status: "meeting" as LeadStatus, next: "שיחה מחר 10:00", price: 3500, note: "אוהבת רילס מאחורי הקלעים של הסטודיו. לשלוח לה דוגמאות מלקוחות כושר לפני השיחה." },
+  { id: "l2", name: "דניאל לוי", business: "מסעדה שכונתית", source: "המלצה", status: "followup" as LeadStatus, next: "פולו-אפ ביום חמישי", note: "מתלבט בגלל התקציב. לשאול מה כבר ניסה ומה לא עבד." },
   { id: "l3", name: "מיכל אברהם", business: "קליניקה לקוסמטיקה", source: "פייסבוק", status: "new" as LeadStatus },
-  { id: "l4", name: "יואב פרץ", business: "חנות אופניים", source: "טיקטוק", status: "closed" as LeadStatus, price: 2800, paid: true },
-  { id: "l5", name: "רוני שמש", business: "מאפייה", source: "אינסטגרם", status: "closed" as LeadStatus, price: 3200, paid: false },
+  { id: "l4", name: "יואב פרץ", business: "חנות אופניים", source: "טיקטוק", status: "closed" as LeadStatus, price: 2800, paid: true, next: "לשלוח דוח חודשי עד ה-24", note: "לקוח מקסים. הכי עובדים אצלו סרטוני רכיבה בטבע." },
+  { id: "l5", name: "רוני שמש", business: "מאפייה", source: "אינסטגרם", status: "closed" as LeadStatus, price: 3200, paid: false, next: "להזכיר על התשלום של נובמבר" },
   { id: "l6", name: "תמר גולן", business: "משרד עורכי דין", source: "לינקדאין", status: "lost" as LeadStatus },
 ];
 

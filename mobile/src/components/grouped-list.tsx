@@ -35,12 +35,15 @@ type RowProps = {
   md?: string;
   iconBg?: any;
   tone?: Tone;
+  // handwritten: the title in the handwriting font, and an optional handwritten note under it
+  hand?: boolean;
+  note?: string;
   href?: Href;
   onPress?: () => void;
   accessory?: ReactNode;
 };
 
-export function Row({ title, subtitle, value, valueColor, sf, md, iconBg, tone, href, onPress, accessory }: RowProps) {
+export function Row({ title, subtitle, value, valueColor, sf, md, iconBg, hand, note, href, onPress, accessory }: RowProps) {
   const c = useColors();
   const pressable = !!(href || onPress);
   const body = (pressed: boolean) => (
@@ -51,8 +54,9 @@ export function Row({ title, subtitle, value, valueColor, sf, md, iconBg, tone, 
         </View>
       ) : null}
       <View style={{ flex: 1, gap: 2 }}>
-        <Text style={[type.body as any, { color: c.label, writingDirection: "rtl" }]} numberOfLines={3}>{title}</Text>
+        <Text style={[type.body as any, { color: c.label, writingDirection: "rtl" }, hand && { fontFamily: font.handMedium, fontSize: 19, lineHeight: 26 }]} numberOfLines={3}>{title}</Text>
         {subtitle ? <Text style={[type.subhead as any, { color: c.secondaryLabel, writingDirection: "rtl" }]} numberOfLines={2}>{subtitle}</Text> : null}
+        {note ? <Text style={{ fontFamily: font.hand, fontSize: 15, lineHeight: 22, color: c.accent, writingDirection: "rtl" }} numberOfLines={2}>{note}</Text> : null}
       </View>
       {value ? <Text selectable style={[type.body as any, { color: valueColor ?? c.secondaryLabel, fontVariant: ["tabular-nums"], writingDirection: "rtl" }]}>{value}</Text> : null}
       {accessory}

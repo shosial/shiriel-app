@@ -1,5 +1,6 @@
 // Type, from the brand: Heebo for Hebrew (heavy for headlines, like TURGEMAN in the logo) and
 // Poppins for numbers, dates and Latin labels (the logo's own typeface). Sizes follow Apple's text styles.
+// Leads and clients add a soft handwriting (Playpen Sans Hebrew) for names and notes.
 // The font files are in assets/fonts and load in app/_layout.tsx.
 export const font = {
   regular: "Heebo-400",
@@ -9,6 +10,9 @@ export const font = {
   num: "Poppins-400",
   numLight: "Poppins-300",
   numMedium: "Poppins-500",
+  // handwriting, for the personal side of leads and clients (names, notes): Playpen Sans Hebrew
+  hand: "Hand-400",
+  handMedium: "Hand-500",
 } as const;
 
 export const fontFiles = {
@@ -19,6 +23,8 @@ export const fontFiles = {
   "Poppins-300": require("../../assets/fonts/Poppins_300Light.ttf"),
   "Poppins-400": require("../../assets/fonts/Poppins_400Regular.ttf"),
   "Poppins-500": require("../../assets/fonts/Poppins_500Medium.ttf"),
+  "Hand-400": require("../../assets/fonts/PlaypenSansHebrew_400Regular.ttf"),
+  "Hand-500": require("../../assets/fonts/PlaypenSansHebrew_500Medium.ttf"),
 };
 
 export const type = {
